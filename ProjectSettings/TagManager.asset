@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - TableroSudoku
+  - TableroContrasena
   layers:
   - Default
   - TransparentFX
