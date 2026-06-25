@@ -3,7 +3,7 @@ using UnityEngine;
 public class InteraccionContrasena : MonoBehaviour
 {
     [Header("Identificación")]
-    public string tagInteractuable = "TableroSudoku";
+    public string tagInteractuable = "TableroContrasena";
 
     [Header("Panel a abrir")]
     public GameObject panelPuzzle;
@@ -24,6 +24,7 @@ public class InteraccionContrasena : MonoBehaviour
             }
             return;
         }
+
         if (instanciaActiva != null) return;
 
         RaycastHit hit;
@@ -86,3 +87,4 @@ public class InteraccionContrasena : MonoBehaviour
         ControladorInteraccion.SetMovimientoHabilitado(true);
     }
 }
+

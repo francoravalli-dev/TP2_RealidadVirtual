@@ -17,7 +17,7 @@ public class PuzzleManager : MonoBehaviour
         {
             puzzleContrasenaCompletado = true;
             Debug.Log("PuzzleManager: ¡Puzzle de Contraseña superado!");
-            
+
             EntregarPiezaSudoku();
             VerificarProgresoGlobal();
         }
@@ -29,7 +29,7 @@ public class PuzzleManager : MonoBehaviour
         {
             puzzleSimonCompletado = true;
             Debug.Log("PuzzleManager: ¡Simón Dice superado!");
-            
+
             EntregarPiezaSudoku();
             VerificarProgresoGlobal();
         }
@@ -43,7 +43,7 @@ public class PuzzleManager : MonoBehaviour
 
     private void VerificarProgresoGlobal()
     {
-        if (puzzleContrasenaCompletado && puzzleSimonCompletado )
+        if (puzzleContrasenaCompletado && puzzleSimonCompletado)
         {
             Debug.Log("¡Todos los puzzles previos completados! Habilitando acceso al Sudoku Final...");
         }
