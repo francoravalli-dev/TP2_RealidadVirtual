@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 10665c4107dd0a945b1c70f6c630d9db
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - zonaNumeros: {instanceID: 0}
+  - botonComprobar: {instanceID: 0}
+  - panelExito: {instanceID: 0}
+  - panelOrdenNumeros: {instanceID: 0}
+  - interaccion: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

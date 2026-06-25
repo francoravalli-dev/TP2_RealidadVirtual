@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - TableroSudoku
   - TableroContrasena
+  - MueblesNumeros
+  - MuebleNumeros
   layers:
   - Default
   - TransparentFX
