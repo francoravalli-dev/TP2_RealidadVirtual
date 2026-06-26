@@ -17,6 +17,7 @@ public class PasswordPuzzle : MonoBehaviour
 
     [Header("Display de la palabra en progreso")]
     public TextMeshProUGUI textoProgreso; 
+
     [Header("Botón Validar")]
     public GameObject botonValidar;
 
@@ -58,17 +59,22 @@ public class PasswordPuzzle : MonoBehaviour
     {
         if (indicesUsados.Contains(indice)) return;
 
-        if (respuestaJugador.Length >= palabraCorrecta.Length) return;
+        if (respuestaJugador.Length > palabraCorrecta.Length) return;
+
+        
 
         respuestaJugador += letrasDeBoton[indice];
         indicesUsados.Add(indice);
+
+        print(respuestaJugador.Length);
+        print(palabraCorrecta.Length);
 
         botonesLetras[indice].GetComponent<Image>().sprite = fondoUsada;
         botonesLetras[indice].interactable = false;
 
         ActualizarDisplay();
 
-        if (respuestaJugador.Length == palabraCorrecta.Length)
+        if (respuestaJugador.Length >= palabraCorrecta.Length)
         {
             botonValidar.SetActive(true);
         }
