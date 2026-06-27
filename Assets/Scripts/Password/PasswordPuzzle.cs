@@ -35,8 +35,9 @@ public class PasswordPuzzle : MonoBehaviour
     public float tiempoAntesDeMostrar = 0.5f;
     public float tiempoVisible = 2f;
 
-    [Header("PuzzleManager")]
-    public PuzzleManager puzzleManager;
+
+    [Header("Pieza que otorga este puzzle")]
+    public Sprite spritePieza;
 
     private string respuestaJugador = "";
     private List<int> indicesUsados = new List<int>(); 
@@ -140,8 +141,8 @@ public class PasswordPuzzle : MonoBehaviour
         panelMensajeExito.SetActive(false);
         panelContrasena.SetActive(false);
 
-        if (puzzleManager != null)
-            puzzleManager.CompletarPuzzleContraseña();
+        if (PuzzleManager.instancia != null)
+        PuzzleManager.instancia.CompletarPuzzleContraseña(spritePieza);
 
         if (interaccionContrasena != null)
             interaccionContrasena.NotificarPanelCerrado();

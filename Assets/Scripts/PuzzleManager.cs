@@ -2,50 +2,46 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
+    public static PuzzleManager instancia;
+
     [Header("Estado de Puzzles")]
     public bool puzzleContrasenaCompletado = false;
-    public bool puzzleSimonCompletado = false;
-    public bool puzzleColoresCompletado = false;
+    public bool puzzleOrdenCompletado = false;
 
-    [Header("Inventario")]
-    public int piezasSudoku = 0;
-    public int totalPiezasNecesarias = 2;
+    [Header("Panel de pieza conseguida")]
+    public PanelPieza panelPieza;
 
-    public void CompletarPuzzleContraseña()
+    void Awake()
     {
-        if (!puzzleContrasenaCompletado)
-        {
-            puzzleContrasenaCompletado = true;
-            Debug.Log("PuzzleManager: ¡Puzzle de Contraseña superado!");
-
-            EntregarPiezaSudoku();
-            VerificarProgresoGlobal();
-        }
+        if (instancia != null) { Destroy(gameObject); return; }
+        instancia = this;
     }
 
-    public void CompletarPuzzleSimon()
+    public void CompletarPuzzleContraseña(Sprite spritePieza)
     {
-        if (!puzzleSimonCompletado)
-        {
-            puzzleSimonCompletado = true;
-            Debug.Log("PuzzleManager: ¡Simón Dice superado!");
+        if (puzzleContrasenaCompletado) return;
 
-            EntregarPiezaSudoku();
-            VerificarProgresoGlobal();
-        }
+        puzzleContrasenaCompletado = true;
+        Debug.Log("PuzzleManager: ¡Puzzle de Contraseña superado!");
+
+        if (panelPieza != null) panelPieza.MostrarPieza(spritePieza);
+        VerificarProgresoGlobal();
     }
 
-    private void EntregarPiezaSudoku()
+    public void CompletarPuzzleOrden(Sprite spritePieza)
     {
-        piezasSudoku++;
-        Debug.Log("Piezas de Sudoku obtenidas: " + piezasSudoku + "/" + totalPiezasNecesarias);
+        if (puzzleOrdenCompletado) return;
+
+        puzzleOrdenCompletado = true;
+        Debug.Log("PuzzleManager: ¡Puzzle de Orden superado!");
+
+        if (panelPieza != null) panelPieza.MostrarPieza(spritePieza);
+        VerificarProgresoGlobal();
     }
 
     private void VerificarProgresoGlobal()
     {
-        if (puzzleContrasenaCompletado && puzzleSimonCompletado)
-        {
-            Debug.Log("¡Todos los puzzles previos completados! Habilitando acceso al Sudoku Final...");
-        }
+        if (puzzleContrasenaCompletado && puzzleOrdenCompletado)
+            Debug.Log("¡Puzzles previos completos! Habilitando acceso al Sudoku..");
     }
 }

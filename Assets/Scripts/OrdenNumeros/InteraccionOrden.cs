@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class InteraccionContrasena : MonoBehaviour
+// Copia renombrada de InteraccionSudoku.cs (ver seccion 4.2 y 5 del informe del Sudoku).
+// Va como componente en el objeto 3D que representa el puzzle de ordenar numeros
+// (por ahora un Cube de Unity). Detecta cuando el jugador lo mira y presiona F.
+public class InteraccionOrden : MonoBehaviour
 {
-    [Header("Identificación")]
-    public string tagInteractuable = "TableroContrasena";
+    [Header("Identificacion")]
+    public string tagInteractuable = "TableroOrden";
 
     [Header("Panel a abrir")]
     public GameObject panelPuzzle;
@@ -12,19 +15,16 @@ public class InteraccionContrasena : MonoBehaviour
     public GameObject textoAyuda;
 
     private bool panelAbierto = false;
-    private static InteraccionContrasena instanciaActiva = null;
+    private static InteraccionOrden instanciaActiva = null;
 
     void Update()
     {
-
-        if (PuzzleManager.instancia != null && PuzzleManager.instancia.puzzleContrasenaCompletado) return;
+        if (PuzzleManager.instancia != null && PuzzleManager.instancia.puzzleOrdenCompletado) return;
 
         if (panelAbierto)
         {
             if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Escape))
-            {
                 CerrarPanel();
-            }
             return;
         }
 
@@ -34,18 +34,13 @@ public class InteraccionContrasena : MonoBehaviour
         bool mirandoObjeto = Physics.Raycast(
             ControladorInteraccion.camaraJugador.transform.position,
             ControladorInteraccion.camaraJugador.transform.forward,
-            out hit,
-            ControladorInteraccion.distanciaInteraccion
-        );
+            out hit, ControladorInteraccion.distanciaInteraccion);
 
-        if (mirandoObjeto && hit.collider.gameObject == this.gameObject && hit.collider.CompareTag(tagInteractuable))
+        if (mirandoObjeto && hit.collider.gameObject == this.gameObject
+            && hit.collider.CompareTag(tagInteractuable))
         {
             if (textoAyuda != null) textoAyuda.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                AbrirPanel();
-            }
+            if (Input.GetKeyDown(KeyCode.F)) AbrirPanel();
         }
         else
         {
@@ -55,17 +50,14 @@ public class InteraccionContrasena : MonoBehaviour
 
     void AbrirPanel()
     {
-        if (PuzzleManager.instancia != null && PuzzleManager.instancia.puzzleContrasenaCompletado) return;
-        
+        if (PuzzleManager.instancia != null && PuzzleManager.instancia.puzzleOrdenCompletado) return;
+
         panelPuzzle.SetActive(true);
         panelAbierto = true;
         instanciaActiva = this;
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
         if (textoAyuda != null) textoAyuda.SetActive(false);
-
         ControladorInteraccion.SetMovimientoHabilitado(false);
     }
 
@@ -74,10 +66,8 @@ public class InteraccionContrasena : MonoBehaviour
         panelPuzzle.SetActive(false);
         panelAbierto = false;
         instanciaActiva = null;
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
         ControladorInteraccion.SetMovimientoHabilitado(true);
     }
 
@@ -85,11 +75,8 @@ public class InteraccionContrasena : MonoBehaviour
     {
         panelAbierto = false;
         instanciaActiva = null;
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
         ControladorInteraccion.SetMovimientoHabilitado(true);
     }
 }
-

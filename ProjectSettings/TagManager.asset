@@ -9,6 +9,7 @@ TagManager:
   - TableroContrasena
   - MueblesNumeros
   - MuebleNumeros
+  - TableroNumeros
   layers:
   - Default
   - TransparentFX
