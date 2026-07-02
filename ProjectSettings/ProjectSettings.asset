@@ -831,8 +831,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: TP2_RealidadVirtual
-  metroPackageVersion: 
+  metroPackageName: TP2RealidadVirtual
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -840,7 +840,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: TP2_RealidadVirtual
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: TP2_RealidadVirtual
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
