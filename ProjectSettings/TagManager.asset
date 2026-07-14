@@ -10,6 +10,7 @@ TagManager:
   - MueblesNumeros
   - MuebleNumeros
   - TableroNumeros
+  - PanelCables
   layers:
   - Default
   - TransparentFX
