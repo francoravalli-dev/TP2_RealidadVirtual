@@ -13,7 +13,8 @@ public class PuertaSudoku : MonoBehaviour
         if (abierta || PuzzleManager.instancia == null) return;
 
         if (PuzzleManager.instancia.puzzleContrasenaCompletado &&
-            PuzzleManager.instancia.puzzleOrdenCompletado)
+            PuzzleManager.instancia.puzzleOrdenCompletado &&
+            PuzzleManager.instancia.puzzleRompecabezaCompletado)
         {
             AbrirPuerta();
         }

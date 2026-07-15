@@ -7,6 +7,7 @@ public class PuzzleManager : MonoBehaviour
     [Header("Estado de Puzzles")]
     public bool puzzleContrasenaCompletado = false;
     public bool puzzleOrdenCompletado = false;
+    public bool puzzleRompecabezaCompletado = false;
 
     [Header("Panel de pieza conseguida")]
     public PanelPieza panelPieza;
@@ -39,9 +40,21 @@ public class PuzzleManager : MonoBehaviour
         VerificarProgresoGlobal();
     }
 
+    public void CompletarPuzzleRompecabeza(Sprite spritePieza)
+    {
+    if (puzzleRompecabezaCompletado) return;
+
+    puzzleRompecabezaCompletado = true;
+    Debug.Log("PuzzleManager: ¡Puzzle de Rompecabeza superado!");
+
+    if (panelPieza != null) panelPieza.MostrarPieza(spritePieza);
+    VerificarProgresoGlobal();
+    }
+
     private void VerificarProgresoGlobal()
     {
-        if (puzzleContrasenaCompletado && puzzleOrdenCompletado)
+        if (puzzleContrasenaCompletado && puzzleOrdenCompletado && puzzleRompecabezaCompletado)
             Debug.Log("¡Puzzles previos completos! Habilitando acceso al Sudoku..");
     }
+
 }
