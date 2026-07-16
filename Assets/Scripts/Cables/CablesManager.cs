@@ -36,6 +36,9 @@ public class CablesManager : MonoBehaviour {
     }
 
     public void ClickEnCable(CableBoton cable) {
+        // Si el cable ya esta conectado, ignorar
+        if (conexiones.ContainsKey(cable.colorCable) && conexiones[cable.colorCable]) return;
+
         // Si no hay nada seleccionado
         if (cableSeleccionado == null) {
             cableSeleccionado = cable;
@@ -58,16 +61,20 @@ public class CablesManager : MonoBehaviour {
             return;
         }
 
-        // Son de lados distintos -> conectar
+        // Son de lados distintos -> intentar conectar
         if (cableSeleccionado.colorCable == cable.colorCable) {
-            // Conexion correcta -> mostrar imagen del medio
+            // Conexion correcta -> mostrar imagen del medio y deshabilitar los cables
             MostrarConexion(cable.colorCable);
-            cableSeleccionado.PonerNormal();
-            cable.PonerNormal();
+            cableSeleccionado.PonerCorrecto();
+            cable.PonerCorrecto();
+            // Deshabilitar el boton para que no se puedan volver a tocar
+            cableSeleccionado.GetComponent<Button>().interactable = false;
+            cable.GetComponent<Button>().interactable = false;
             conexiones[cable.colorCable] = true;
         } else {
-            // Colores distintos -> no conectar
+            // Colores distintos -> no conectar, volver a normal
             cableSeleccionado.PonerNormal();
+            cable.PonerNormal();
         }
 
         cableSeleccionado = null;
