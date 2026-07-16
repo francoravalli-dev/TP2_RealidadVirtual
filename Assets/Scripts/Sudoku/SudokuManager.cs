@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SudokuManager : MonoBehaviour
 {
@@ -173,5 +174,17 @@ public class SudokuManager : MonoBehaviour
 
         if (interaccionSudoku != null)
             interaccionSudoku.NotificarPanelCerrado();
+        
+        int indiceEscenaActual = SceneManager.GetActiveScene().buildIndex;
+        int siguienteEscena = indiceEscenaActual + 1;
+
+        if (siguienteEscena < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(siguienteEscena); // <-- ESTO ES LO QUE FALTABA
+        }
+        else
+        {
+            Debug.LogWarning("No hay una siguiente escena configurada en el Build Settings.");
+        }
     }
 }
