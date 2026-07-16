@@ -12,12 +12,20 @@ public class PuzzleManager : MonoBehaviour
     [Header("Panel de pieza conseguida")]
     public PanelPieza panelPieza;
 
+    [Header("Sonido de puzzle completado")] 
+    public AudioSource audioSource;          
+    public AudioClip sonidoExito;   
+
     void Awake()
     {
         if (instancia != null) { Destroy(gameObject); return; }
         instancia = this;
     }
-
+ public void ReproducirSonidoExito() // NUEVO
+    {
+        if (audioSource != null && sonidoExito != null)
+            audioSource.PlayOneShot(sonidoExito);
+    }
     public void CompletarPuzzleContraseña(Sprite spritePieza)
     {
         if (puzzleContrasenaCompletado) return;

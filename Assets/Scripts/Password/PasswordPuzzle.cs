@@ -43,17 +43,23 @@ public class PasswordPuzzle : MonoBehaviour
     private List<int> indicesUsados = new List<int>(); 
 
     void Start()
+{
+    botonValidar.SetActive(false);
+
+    spritesOriginales = new Sprite[botonesLetras.Length];
+    for (int i = 0; i < botonesLetras.Length; i++)
     {
-        botonValidar.SetActive(false);
-
-        for (int i = 0; i < botonesLetras.Length; i++)
-        {
-            int idx = i;
-            botonesLetras[idx].onClick.AddListener(() => ClickEnLetra(idx));
-        }
-
-        ActualizarDisplay();
+        spritesOriginales[i] = botonesLetras[i].GetComponent<Image>().sprite;
     }
+
+    for (int i = 0; i < botonesLetras.Length; i++)
+    {
+        int idx = i;
+        botonesLetras[idx].onClick.AddListener(() => ClickEnLetra(idx));
+    }
+
+    ActualizarDisplay();
+}
 
 
     void ClickEnLetra(int indice)
@@ -119,7 +125,7 @@ public class PasswordPuzzle : MonoBehaviour
 
         for (int i = 0; i < botonesLetras.Length; i++)
         {
-            botonesLetras[i].GetComponent<Image>().sprite = fondoNormalLetra;
+            botonesLetras[i].GetComponent<Image>().sprite = spritesOriginales[i];
             botonesLetras[i].interactable = true;
         }
 
@@ -135,7 +141,9 @@ public class PasswordPuzzle : MonoBehaviour
         yield return new WaitForSeconds(tiempoAntesDeMostrar);
 
         panelMensajeExito.SetActive(true);
-
+        if (PuzzleManager.instancia != null)
+        PuzzleManager.instancia.ReproducirSonidoExito();
+        
         yield return new WaitForSeconds(tiempoVisible);
 
         panelMensajeExito.SetActive(false);
@@ -147,4 +155,5 @@ public class PasswordPuzzle : MonoBehaviour
         if (interaccionContrasena != null)
             interaccionContrasena.NotificarPanelCerrado();
     }
+    private Sprite[] spritesOriginales;
 }

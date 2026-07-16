@@ -80,6 +80,8 @@ public class OrdenManager : MonoBehaviour
         c.MarcarCorrecto();
 
     if (panelCompletado != null) panelCompletado.SetActive(true);
+     if (PuzzleManager.instancia != null)                            
+        PuzzleManager.instancia.ReproducirSonidoExito();
     yield return new WaitForSeconds(tiempoMensajeCompletado);
     if (panelCompletado != null) panelCompletado.SetActive(false);
     if (panelOrden != null) panelOrden.SetActive(false);

@@ -158,6 +158,8 @@ public class RompecabezaManager : MonoBehaviour
         yield return StartCoroutine(FeedbackImagenCompleta());
 
         if (panelCompletado != null) panelCompletado.SetActive(true);
+        if (PuzzleManager.instancia != null)                            
+        PuzzleManager.instancia.ReproducirSonidoExito();  
         yield return new WaitForSeconds(tiempoMensajeCompletado);
         if (panelCompletado != null) panelCompletado.SetActive(false);
         if (panelRompecabeza != null) panelRompecabeza.SetActive(false);

@@ -166,6 +166,8 @@ public class SudokuManager : MonoBehaviour
         yield return new WaitForSeconds(tiempoAntesDeMostrar);
 
         panelMensajeExito.SetActive(true);
+         if (PuzzleManager.instancia != null)                            
+        PuzzleManager.instancia.ReproducirSonidoExito();
 
         yield return new WaitForSeconds(tiempoVisible);
 

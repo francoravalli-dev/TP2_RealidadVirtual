@@ -103,6 +103,8 @@ public class CablesManager : MonoBehaviour {
     IEnumerator MostrarExito() {
         yield return new WaitForSeconds(tiempoAntesDeMostrar);
         panelExito.SetActive(true);
+         if (PuzzleManager.instancia != null)                            
+        PuzzleManager.instancia.ReproducirSonidoExito();
         yield return new WaitForSeconds(tiempoVisible);
         panelExito.SetActive(false);
         panelCables.SetActive(false);
