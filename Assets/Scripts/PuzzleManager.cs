@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
     public bool puzzleContrasenaCompletado = false;
     public bool puzzleOrdenCompletado = false;
     public bool puzzleRompecabezaCompletado = false;
+    public bool puzzleCablesCompletado = false;
 
     [Header("Panel de pieza conseguida")]
     public PanelPieza panelPieza;
